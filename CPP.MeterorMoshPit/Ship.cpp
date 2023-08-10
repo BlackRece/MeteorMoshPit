@@ -20,6 +20,14 @@ void Ship::SetHeadingAngle(float fAngle)
 	m_fAngle = fAngle;
 }
 
+sf::Vector2f Ship::GetPosition() const {
+	return m_v2fPosition; 
+}
+
+void Ship::SetPosition(sf::Vector2f v2fPosition) { 
+	m_v2fPosition = v2fPosition;
+}
+
 void Ship::MoveForward(float fDelta, float fSpeed)
 {
 	m_v2fPosition.x += cos(m_fAngle) * fSpeed * fDelta;

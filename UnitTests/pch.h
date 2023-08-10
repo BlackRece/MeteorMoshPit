@@ -11,6 +11,8 @@
 #include "CppUnitTest.h"
 #include "../CPP.MeterorMoshPit/Ship.h"
 #include "../CPP.MeterorMoshPit/IMoveable.h"
-#include "SFML/Graphics.hpp"
+#include "../SFMLv260/SFML-2.6.0/include/SFML/System/Vector2.hpp"
+#include <SFML/System/Vector2.hpp>
+//#include "SFML/System/Vector2.hpp"
 
 #endif //PCH_H

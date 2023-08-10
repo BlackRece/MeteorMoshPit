@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "../CPP.MeterorMoshPit/Ship.h"
+//#include "SFML/Graphics.hpp"
+#include "SFML/System/Vector2.hpp"
 //#inlcude "TestHelpers.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -26,16 +28,25 @@ namespace GivenAShipClass
         TEST_METHOD(ThenShipIsMovedToExpectedPosition)
         {
             float fHeadingAngle = 90.f;
+            sf::Vector2f v2fStartingPosition(0.f, 0.f);
             Ship ship;
             ship.SetHeadingAngle(fHeadingAngle);
+            ship.SetPosition(v2fStartingPosition);
             float fDelta = 1.f;
             float fSpeed = 1.f;
-            sf::Vector2f fExpectedPosition = ship.GetPosition();
-            fExpectedPosition.x += cos(fHeadingAngle) * fSpeed * fDelta;
-            fExpectedPosition.x += sin(fHeadingAngle) * fSpeed * fDelta;
+
+            sf::Vector2f v2fVelocity = sf::Vector2f(
+                cos(fHeadingAngle) * fSpeed * fDelta, 
+                sin(fHeadingAngle) * fSpeed * fDelta);
+            sf::Vector2f fExpectedPosition = sf::Vector2f(
+                v2fVelocity.x, 
+                v2fVelocity.y);
+
             ship.MoveForward(fDelta, fSpeed);
             sf::Vector2f fActualPosition = ship.GetPosition();
-            Assert::AreEqual(fExpectedPosition.x, fActualPosition.x);
+            Assert::AreEqual(
+                fExpectedPosition.x,
+                fActualPosition.x);
         }
     };
 
