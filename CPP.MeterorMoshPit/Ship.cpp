@@ -1,6 +1,9 @@
 #include "Ship.h"
 
-Ship::Ship()
+Ship::Ship(float fSpeed)
+	: m_v2fPosition(0.f, 0.f)
+	, m_fAngle(0.f)
+	, m_fSpeed(fSpeed)
 {
 }
 
@@ -16,7 +19,6 @@ float Ship::GetHeadingAngle() const
 
 void Ship::SetHeadingAngle(float fAngle)
 {
-	//ship.setRotation(fAngle);
 	m_fAngle = fAngle;
 }
 
@@ -26,6 +28,11 @@ sf::Vector2f Ship::GetPosition() const {
 
 void Ship::SetPosition(sf::Vector2f v2fPosition) { 
 	m_v2fPosition = v2fPosition;
+}
+
+void Ship::ApplyThrust(float fDelta)
+{
+	MoveForward(fDelta, m_fSpeed);
 }
 
 void Ship::MoveForward(float fDelta, float fSpeed)

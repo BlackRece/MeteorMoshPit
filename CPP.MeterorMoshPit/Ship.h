@@ -7,13 +7,14 @@
 class Ship : public IMoveable
 {
 public:
-	Ship();
+	Ship(float fSpeed);
 	~Ship();
 
 	float GetHeadingAngle() const;
 	void SetHeadingAngle(float fAngle);
 	sf::Vector2f GetPosition() const;
 	void SetPosition(sf::Vector2f v2fPosition);
+	void ApplyThrust(float fDelta);
 
 	void MoveForward(float fDelta, float fSpeed) override;
 	void Rotate(float fAngle) override;
@@ -21,6 +22,7 @@ public:
 private:
 	sf::Vector2f m_v2fPosition;
 	float m_fAngle;
+	float m_fSpeed;
 };
 
 #endif // !SHIP_H

@@ -1,9 +1,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "../CPP.MeterorMoshPit/Ship.h"
-//#include "SFML/Graphics.hpp"
 #include "SFML/System/Vector2.hpp"
-//#inlcude "TestHelpers.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -14,8 +12,9 @@ namespace GivenAShipClass
         TEST_METHOD(ThenTheHeadingAngleIsAsExpected)
         {
             float fExpectedAngle = 90.f;
+            float fSpeed = 1.f;
 
-            Ship ship;
+            Ship ship = Ship(fSpeed);
             ship.SetHeadingAngle(fExpectedAngle);
             float fActualAngle = ship.GetHeadingAngle();
 
@@ -28,12 +27,13 @@ namespace GivenAShipClass
         TEST_METHOD(ThenShipIsMovedToExpectedPosition)
         {
             float fHeadingAngle = 90.f;
-            sf::Vector2f v2fStartingPosition(0.f, 0.f);
-            Ship ship;
-            ship.SetHeadingAngle(fHeadingAngle);
-            ship.SetPosition(v2fStartingPosition);
             float fDelta = 1.f;
             float fSpeed = 1.f;
+            sf::Vector2f v2fStartingPosition(0.f, 0.f);
+
+            Ship ship = Ship(fSpeed);
+            ship.SetHeadingAngle(fHeadingAngle );
+            ship.SetPosition(v2fStartingPosition);
 
             sf::Vector2f v2fVelocity = sf::Vector2f(
                 cos(fHeadingAngle) * fSpeed * fDelta, 
@@ -55,7 +55,9 @@ namespace GivenAShipClass
     public:
         TEST_METHOD(ThenATriangleIsDrawn)
         {
-            Ship ship;
+            float fSpeed = 1.f;
+
+            Ship ship = Ship(fSpeed);
             //ship.render();
             //Assert::IsTrue(ship.IsAlive());
         }
