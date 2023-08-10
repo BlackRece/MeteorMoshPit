@@ -8,5 +8,9 @@
 #define PCH_H
 
 // add headers that you want to pre-compile here
+#include "CppUnitTest.h"
+#include "../CPP.MeterorMoshPit/Ship.h"
+#include "../CPP.MeterorMoshPit/IMoveable.h"
+#include "SFML/Graphics.hpp"
 
 #endif //PCH_H
