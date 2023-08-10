@@ -137,6 +137,7 @@
     <ClCompile Include="Ship.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IMoveable.h" />
     <ClInclude Include="Ship.h" />
   </ItemGroup>

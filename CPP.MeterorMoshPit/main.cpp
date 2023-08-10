@@ -22,15 +22,15 @@ MovableEntity::~MovableEntity()
 
 int main()
 {
-    float fWidth = 600.0f;
-    float fHeight = 400.0f;
+    int iWidth = 600;
+    int iHeight = 400;
     std::string sTitle = "Meteor Mosh Pit";
 
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
 
     sf::RenderWindow window(
-        sf::VideoMode(fWidth, fHeight),
+        sf::VideoMode(iWidth, iHeight),
         sTitle,
         sf::Style::Default,
         settings);
@@ -44,7 +44,7 @@ int main()
     ship.setFillColor(sf::Color::Black);
     ship.setOutlineColor(sf::Color::White);
     ship.setOutlineThickness(2.0f);
-    ship.setPosition(fWidth / 2.0f, fHeight / 2.0f);
+    ship.setPosition(iWidth / 2.0f, iHeight / 2.0f);
     sf::FloatRect shipBounds = ship.getGlobalBounds();
     ship.setOrigin(shipBounds.width / 2, shipBounds.height / 2);
     float fShipSpeed = 10.0f;
