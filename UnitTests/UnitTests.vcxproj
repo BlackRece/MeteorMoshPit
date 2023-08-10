@@ -102,7 +102,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>D:\GitHub\MeteorMoshPit\SFMLv260\SFML-2.6.0\lib;$(VCInstallDir)UnitTest\lib;D:\GitHub\MeteorMoshPit\CPP.MeterorMoshPit\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;$(SolutionDir)$(SolutionName)\$(IntermediateOutputPath)Ship;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;$(SolutionDir)$(SolutionName)\$(IntermediateOutputPath)Ship;$(SolutionDir)$(SolutionName)\$(IntermediateOutputPath)Shape;%(AdditionalDependencies)</AdditionalDependencies>
       <LinkStatus>true</LinkStatus>
     </Link>
   </ItemDefinitionGroup>
@@ -160,6 +160,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GivenAShape.cpp" />
     <ClCompile Include="GivenAShipClass.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

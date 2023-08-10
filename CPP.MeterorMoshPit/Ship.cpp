@@ -45,3 +45,8 @@ void Ship::Rotate(float fAngle)
 {
 	m_fAngle += fAngle;
 }
+
+void Ship::Draw(sf::RenderWindow& window)
+{
+
+}

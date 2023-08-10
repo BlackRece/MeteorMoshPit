@@ -24,6 +24,9 @@
     <ClCompile Include="GivenAShipClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GivenAShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">

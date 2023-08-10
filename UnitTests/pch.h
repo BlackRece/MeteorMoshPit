@@ -9,10 +9,13 @@
 
 // add headers that you want to pre-compile here
 #include "CppUnitTest.h"
-#include "../CPP.MeterorMoshPit/Ship.h"
-#include "../CPP.MeterorMoshPit/IMoveable.h"
-#include "../SFMLv260/SFML-2.6.0/include/SFML/System/Vector2.hpp"
+
 #include <SFML/System/Vector2.hpp>
-//#include "SFML/System/Vector2.hpp"
+
+#include "../CPP.MeterorMoshPit/IMoveable.h"
+#include "../CPP.MeterorMoshPit/IDrawable.h"
+//#include "../CPP.MeterorMoshPit/Shape.h"
+//#include "../CPP.MeterorMoshPit/Ship.h"
+
 
 #endif //PCH_H

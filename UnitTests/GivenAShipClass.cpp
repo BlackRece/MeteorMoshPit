@@ -1,7 +1,7 @@
 #include "pch.h"
-#include "CppUnitTest.h"
+//#include "CppUnitTest.h"
 #include "../CPP.MeterorMoshPit/Ship.h"
-#include "SFML/System/Vector2.hpp"
+//#include "SFML/System/Vector2.hpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
