@@ -21,6 +21,24 @@ namespace GivenAShipClass
         }
     };
 
+    TEST_CLASS(WhenMovingForward)
+    {
+        TEST_METHOD(ThenShipIsMovedToExpectedPosition)
+        {
+            float fHeadingAngle = 90.f;
+            Ship ship;
+            ship.SetHeadingAngle(fHeadingAngle);
+            float fDelta = 1.f;
+            float fSpeed = 1.f;
+            sf::Vector2f fExpectedPosition = ship.GetPosition();
+            fExpectedPosition.x += cos(fHeadingAngle) * fSpeed * fDelta;
+            fExpectedPosition.x += sin(fHeadingAngle) * fSpeed * fDelta;
+            ship.MoveForward(fDelta, fSpeed);
+            sf::Vector2f fActualPosition = ship.GetPosition();
+            Assert::AreEqual(fExpectedPosition.x, fActualPosition.x);
+        }
+    };
+
     TEST_CLASS(WhenTheShipIsDrawn)
     {
     public:

@@ -12,6 +12,7 @@ public:
 
 	float GetHeadingAngle() const;
 	void SetHeadingAngle(float fAngle);
+	sf::Vector2f GetPosition() const { return m_v2fPosition; }
 
 	void MoveForward(float fDelta, float fSpeed) override;
 	void Rotate(float fAngle) override;
