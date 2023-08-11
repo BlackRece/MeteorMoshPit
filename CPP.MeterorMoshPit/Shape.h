@@ -7,27 +7,28 @@
 class Shape : public IDrawable
 {
 public:
+	Shape();
 	Shape(sf::Vector2f v2fPosition, float fRadius);
 	~Shape();
 
 	void SetShape();
 
-	void SetFillColor(sf::Color color);
-	sf::Color GetFillColor() const { return m_fillColor; }
-
-	void SetLineColor(sf::Color color);
-	sf::Color GetLineColor() const { return m_lineColor; }
-
-	void SetLineThickness(float fThickness);
-	float GetLineThickness() const { return m_fLineThickness; }
-
-	void SetRadius(float fRadius);
-	float GetRadius() const { return m_fRadius; }
-
-	void SetPosition(sf::Vector2f v2fPosition);
-	sf::Vector2f GetPosition() const { return m_v2fPosition; }
-
 	// IDrawable
+	void SetFillColor(sf::Color color) override;
+	sf::Color GetFillColor() const override;
+
+	void SetLineColor(sf::Color color) override;
+	sf::Color GetLineColor() const override;
+
+	void SetLineThickness(float fThickness) override;
+	float GetLineThickness() const override;
+
+	void SetRadius(float fRadius) override;
+	float GetRadius() const override;
+
+	void SetPosition(sf::Vector2f v2fPosition) override;
+	sf::Vector2f GetPosition() const override;
+
 	void Draw(sf::RenderWindow& window) override;
 
 private:

@@ -2,10 +2,12 @@
 #define SHIP_H
 
 #include "IMoveable.h"
-#include "IDrawable.h"
+#include "Shape.h"
 #include <SFML/Graphics.hpp>
 
-class Ship : public IMoveable, public IDrawable
+#define SHIP_SIDES 3
+
+class Ship : public IMoveable //, public IDrawable
 {
 public:
 	Ship(float fSpeed);
@@ -22,9 +24,10 @@ public:
 	void Rotate(float fAngle) override;
 
 	// IDrawable
-	void Draw(sf::RenderWindow& window) override;
+	void Draw(sf::RenderWindow& window);
 
 private:
+	Shape m_shape;
 	sf::Vector2f m_v2fPosition;
 	float m_fAngle;
 	float m_fSpeed;

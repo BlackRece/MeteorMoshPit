@@ -5,6 +5,7 @@ Ship::Ship(float fSpeed)
 	, m_fAngle(0.f)
 	, m_fSpeed(fSpeed)
 {
+	m_shape = Shape(m_v2fPosition, SHIP_SIDES);
 }
 
 Ship::~Ship()
@@ -48,5 +49,5 @@ void Ship::Rotate(float fAngle)
 
 void Ship::Draw(sf::RenderWindow& window)
 {
-
+	m_shape.Draw(window);
 }
