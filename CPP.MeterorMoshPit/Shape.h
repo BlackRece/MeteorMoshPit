@@ -14,8 +14,8 @@ public:
 	void SetShape();
 
 	// IDrawable
-	void SetFillColor(sf::Color color) override;
-	sf::Color GetFillColor() const override;
+	void SetFillColour(sf::Color color) override;
+	sf::Color GetFillColour() const override;
 
 	void SetLineColor(sf::Color color) override;
 	sf::Color GetLineColor() const override;

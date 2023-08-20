@@ -27,7 +27,7 @@ namespace GivenAShape
 			Shape shape = Shape(v2fExpectedPosition, fExpectedRadius);
 			sf::Vector2f v2fActualPosition = shape.GetPosition();
 			float fActualRadius = shape.GetRadius();
-			sf::Color actualFillColor = shape.GetFillColor();
+			sf::Color actualFillColor = shape.GetFillColour();
 			sf::Color actualLineColor = shape.GetLineColor();
 			float fActualLineThickness = shape.GetLineThickness();
 
@@ -77,8 +77,8 @@ namespace GivenAShape
 			
 			sf::Color expectedFillColor = sf::Color::Red;
 
-			shape.SetFillColor(expectedFillColor);
-			sf::Color actualFillColor = shape.GetFillColor();
+			shape.SetFillColour(expectedFillColor);
+			sf::Color actualFillColor = shape.GetFillColour();
 
 			Assert::AreEqual(expectedFillColor.r, actualFillColor.r);
 			Assert::AreEqual(expectedFillColor.g, actualFillColor.g);
@@ -118,7 +118,7 @@ namespace GivenAShape
 
 			Shape shape = Shape(v2fPosition, fRadius);
 			shape.SetShape();
-			shape.SetFillColor(color);
+			shape.SetFillColour(color);
 			shape.SetLineColor(color);
 			shape.SetLineThickness(1.f);
 			shape.SetRadius(fRadius);

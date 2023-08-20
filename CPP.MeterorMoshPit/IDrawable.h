@@ -8,8 +8,8 @@ class IDrawable
 public:
 	virtual ~IDrawable() {};
 
-	virtual void SetFillColor(sf::Color color) = 0;
-	virtual sf::Color GetFillColor() const = 0;
+	virtual void SetFillColour(sf::Color color) = 0;
+	virtual sf::Color GetFillColour() const = 0;
 
 	virtual void SetLineColor(sf::Color color) = 0;
 	virtual sf::Color GetLineColor() const = 0;

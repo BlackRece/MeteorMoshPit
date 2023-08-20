@@ -27,13 +27,15 @@ void Shape::SetShape()
 	m_shape = sf::CircleShape(m_fRadius);
 }
 
-void Shape::SetFillColor(sf::Color color)
+void Shape::SetFillColour(sf::Color fillColour)
 {
+	m_fillColor = fillColour;
+	m_shape.setFillColor(m_fillColor);
 }
 
-sf::Color Shape::GetFillColor() const 
+sf::Color Shape::GetFillColour() const 
 {
-	return m_fillColor;
+	return m_shape.getFillColor();
 }
 
 void Shape::SetLineColor(sf::Color color)
