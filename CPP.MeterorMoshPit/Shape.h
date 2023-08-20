@@ -29,6 +29,9 @@ public:
 	void SetPosition(sf::Vector2f v2fPosition) override;
 	sf::Vector2f GetPosition() const override;
 
+	void SetRotation(float const fAngle) override;
+	float GetRotation() const override;
+
 	void Draw(sf::RenderWindow& window) override;
 
 private:

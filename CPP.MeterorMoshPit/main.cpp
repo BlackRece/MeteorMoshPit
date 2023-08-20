@@ -22,6 +22,7 @@ MovableEntity::~MovableEntity()
 
 int main()
 {
+    //setup window
     int iWidth = 600;
     int iHeight = 400;
     std::string sTitle = "Meteor Mosh Pit";
@@ -36,6 +37,7 @@ int main()
         settings);
     window.setFramerateLimit(60);
     
+    //setup test shape
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
@@ -87,6 +89,7 @@ int main()
         // update
         if (window.hasFocus())
         {
+            //keyboard input
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Left))
             {
 				ship.rotate(-1.0f);
@@ -116,6 +119,7 @@ int main()
                 ship.setPosition(pos);*/
 			}
 
+            //debug display
             std::string sAngle = std::to_string(ship.getRotation());
             texts[0].setString("Angle: " + sAngle);
             std::string sShipPos = std::to_string(ship.getPosition().x);
@@ -127,7 +131,7 @@ int main()
             texts[2].setString("Class Angle: " + sClass);
         }
 
-        // render
+        // render drawables
         window.clear();
         window.draw(shape);
         window.draw(ship);

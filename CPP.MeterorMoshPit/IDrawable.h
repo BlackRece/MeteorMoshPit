@@ -23,6 +23,9 @@ public:
 	virtual void SetPosition(sf::Vector2f v2fPosition) = 0;
 	virtual sf::Vector2f GetPosition() const = 0;
 
+	virtual void SetRotation(float const fAngle) = 0;
+	virtual float GetRotation() const = 0;
+
 	virtual void Draw(sf::RenderWindow& window) = 0;
 
 private:

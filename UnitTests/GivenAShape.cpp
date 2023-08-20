@@ -46,7 +46,6 @@ namespace GivenAShape
 			Assert::AreEqual(fExpectedLineThickness, fActualLineThickness);
 		}
 
-
 		TEST_METHOD(ThenThePositionIsAsExpected)
 		{
 			sf::Vector2f v2fExpectedPosition(0.f, 0.f);
@@ -59,6 +58,17 @@ namespace GivenAShape
 			shape.SetPosition(v2fExpectedPosition);
 			v2fActualPosition = shape.GetPosition();
 			Assert::AreEqual(v2fExpectedPosition.x, v2fActualPosition.x);
+		}
+		
+		TEST_METHOD(ThenTheRotationAngleGivesExpectedResult)
+		{
+			Shape shape = Shape(sf::Vector2f(0.f, 0.f), 1.f);
+
+			float fExpectedAngle = 90;
+			shape.SetRotation(fExpectedAngle);
+			float fActualAngle = shape.GetRotation();
+
+			Assert::AreEqual(fExpectedAngle, fActualAngle);
 		}
 
 		TEST_METHOD(ThenACircleIsDrawn)
