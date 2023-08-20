@@ -75,11 +75,12 @@ sf::Vector2f Shape::GetPosition() const
 
 void Shape::SetRotation(float const fAngle)
 {
+	m_shape.setRotation(fAngle);
 }
 
 float Shape::GetRotation() const
 {
-	return 0.0f;
+	return m_shape.getRotation();
 }
 
 void Shape::Draw(sf::RenderWindow& window)
