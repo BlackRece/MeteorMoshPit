@@ -71,6 +71,45 @@ namespace GivenAShape
 			Assert::AreEqual(fExpectedAngle, fActualAngle);
 		}
 
+		TEST_METHOD(ThenTheFillColourCanBeSet)
+		{
+			Shape shape = Shape(sf::Vector2f(0.f, 0.f), 1.f);
+			
+			sf::Color expectedFillColor = sf::Color::Red;
+
+			shape.SetFillColor(expectedFillColor);
+			sf::Color actualFillColor = shape.GetFillColor();
+
+			Assert::AreEqual(expectedFillColor.r, actualFillColor.r);
+			Assert::AreEqual(expectedFillColor.g, actualFillColor.g);
+			Assert::AreEqual(expectedFillColor.b, actualFillColor.b);
+		}
+
+		TEST_METHOD(ThenTheLineColourCanBeSet)
+		{
+			Shape shape = Shape(sf::Vector2f(0.f, 0.f), 1.f);
+
+			sf::Color expectedLineColor = sf::Color::Red;
+
+			shape.SetLineColor(expectedLineColor);
+			sf::Color actualLineColor = shape.GetLineColor();
+
+			Assert::AreEqual(expectedLineColor.r, actualLineColor.r);
+			Assert::AreEqual(expectedLineColor.g, actualLineColor.g);
+			Assert::AreEqual(expectedLineColor.b, actualLineColor.b);
+		}
+
+		TEST_METHOD(ThenTheLineThicknessCanBeSet)
+		{
+			Shape shape = Shape(sf::Vector2f(0.f, 0.f), 1.f);
+
+			float fExpectedThickness = 3.f;
+			shape.SetLineThickness(fExpectedThickness);
+			float fActualThickness = shape.GetLineThickness();
+
+			Assert::AreEqual(fExpectedThickness, fActualThickness);
+		}
+
 		TEST_METHOD(ThenACircleIsDrawn)
 		{
 			sf::Vector2f v2fPosition(0.f, 0.f);
