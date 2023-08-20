@@ -3,7 +3,7 @@
 Shape::Shape()
 	: m_v2fPosition(sf::Vector2f(0.f,0.f))
 	, m_fRadius(1.f)
-	, m_fillColor(sf::Color::Black)
+	, m_fillColour(sf::Color::Black)
 	, m_lineColor(sf::Color::White)
 	, m_fLineThickness(1.f)
 {
@@ -12,7 +12,7 @@ Shape::Shape()
 Shape::Shape(sf::Vector2f v2fPosition, float fRadius)
 	: m_v2fPosition(v2fPosition)
 	, m_fRadius(fRadius)
-	, m_fillColor(sf::Color::Black)
+	, m_fillColour(sf::Color::Black)
 	, m_lineColor(sf::Color::White)
 	, m_fLineThickness(1.f)
 {
@@ -29,8 +29,8 @@ void Shape::SetShape()
 
 void Shape::SetFillColour(sf::Color fillColour)
 {
-	m_fillColor = fillColour;
-	m_shape.setFillColor(m_fillColor);
+	m_fillColour = fillColour;
+	m_shape.setFillColor(m_fillColour);
 }
 
 sf::Color Shape::GetFillColour() const 
@@ -38,41 +38,48 @@ sf::Color Shape::GetFillColour() const
 	return m_shape.getFillColor();
 }
 
-void Shape::SetLineColor(sf::Color color)
+void Shape::SetLineColor(sf::Color lineColour)
 {
+	m_lineColor = lineColour;
+	m_shape.setOutlineColor(m_lineColor);
 }
 
 sf::Color Shape::GetLineColor() const 
 { 
-	return m_lineColor; 
+	return m_shape.getOutlineColor(); 
 }
 
 void Shape::SetLineThickness(float fThickness)
 {
+	m_fLineThickness = fThickness;
+	m_shape.setOutlineThickness(m_fLineThickness);
 }
 
 float Shape::GetLineThickness() const 
 {
-	return m_fLineThickness; 
+	return m_shape.getOutlineThickness(); 
 }
 
 void Shape::SetRadius(float fRadius)
 {
+	m_fRadius = fRadius;
+	m_shape.setRadius(m_fRadius);
 }
 
 float Shape::GetRadius() const 
 { 
-	return m_fRadius; 
+	return m_shape.getRadius(); 
 }
 
 void Shape::SetPosition(sf::Vector2f v2fPosition)
 {
+	m_v2fPosition = v2fPosition;
 	m_shape.setPosition(v2fPosition);
 }
 
 sf::Vector2f Shape::GetPosition() const 
 { 
-	return m_v2fPosition; 
+	return m_shape.getPosition(); 
 }
 
 void Shape::SetRotation(float const fAngle)

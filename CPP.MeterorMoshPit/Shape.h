@@ -39,7 +39,7 @@ private:
 	sf::Vector2f m_v2fPosition;
 
 	sf::CircleShape m_shape;
-	sf::Color m_fillColor;
+	sf::Color m_fillColour;
 	sf::Color m_lineColor;
 	float m_fLineThickness;
 	float m_fRadius;
