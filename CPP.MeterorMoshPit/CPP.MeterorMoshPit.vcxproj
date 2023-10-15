@@ -133,11 +133,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Ship.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameWindow.h" />
+    <ClInclude Include="Maths.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IMoveable.h" />
     <ClInclude Include="Shape.h" />

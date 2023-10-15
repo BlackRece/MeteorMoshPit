@@ -8,7 +8,7 @@ class Shape : public IDrawable
 {
 public:
 	Shape();
-	Shape(sf::Vector2f v2fPosition, float fRadius);
+	Shape(sf::Vector2f v2fPosition, float fRadius, int iPoints);
 	~Shape();
 
 	void SetShape();
@@ -31,20 +31,20 @@ public:
 
 	void SetRotation(float const fAngle) override;
 	float GetRotation() const override;
+	float GetRotationInRadians() const;
 
 	void Draw(sf::RenderWindow& window) override;
 
 private:
 	void SetOrigin();
-	sf::Vector2f m_v2fPosition;
 
+	sf::Vector2f	m_v2fPosition;
 	sf::CircleShape m_shape;
-	sf::Color m_fillColour;
-	sf::Color m_lineColor;
-	float m_fLineThickness;
-	float m_fRadius;
-
-
+	sf::Color		m_fillColour;
+	sf::Color		m_lineColor;
+	float			m_fLineThickness;
+	float			m_fRadius;
+	int				m_iPoints;
 };
 
 #endif // !SHAPE_H

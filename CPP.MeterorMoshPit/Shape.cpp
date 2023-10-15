@@ -1,17 +1,20 @@
 #include "Shape.h"
+#include "Maths.h"
 
 Shape::Shape()
 	: m_v2fPosition(sf::Vector2f(0.f,0.f))
 	, m_fRadius(1.f)
+	, m_iPoints(3)
 	, m_fillColour(sf::Color::Black)
 	, m_lineColor(sf::Color::White)
 	, m_fLineThickness(1.f)
 {
 }
 
-Shape::Shape(sf::Vector2f v2fPosition, float fRadius)
+Shape::Shape(sf::Vector2f v2fPosition, float fRadius, int iPoints)
 	: m_v2fPosition(v2fPosition)
 	, m_fRadius(fRadius)
+	, m_iPoints(iPoints)
 	, m_fillColour(sf::Color::Black)
 	, m_lineColor(sf::Color::White)
 	, m_fLineThickness(1.f)
@@ -24,7 +27,8 @@ Shape::~Shape()
 
 void Shape::SetShape()
 {
-	m_shape = sf::CircleShape(m_fRadius);
+	m_shape = sf::CircleShape(m_fRadius, m_iPoints);
+	SetOrigin();
 }
 
 void Shape::SetFillColour(sf::Color fillColour)
@@ -84,12 +88,17 @@ sf::Vector2f Shape::GetPosition() const
 
 void Shape::SetRotation(float const fAngle)
 {
-	m_shape.setRotation(fAngle);
+	m_shape.setRotation(Maths::Modf(fAngle, 360.f));
 }
 
 float Shape::GetRotation() const
 {
 	return m_shape.getRotation();
+}
+
+float Shape::GetRotationInRadians() const
+{
+	return (Maths::ToDegrees(m_shape.getRotation()));
 }
 
 void Shape::Draw(sf::RenderWindow& window)

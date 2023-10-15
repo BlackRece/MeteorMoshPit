@@ -1,24 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "Ship.h"
-
-class MovableEntity
-{
-public:
-    MovableEntity();
-    ~MovableEntity();
-
-private:
-
-};
-
-MovableEntity::MovableEntity()
-{
-}
-
-MovableEntity::~MovableEntity()
-{
-}
+#include "GameWindow.h"
 
 int main()
 {
@@ -36,24 +19,28 @@ int main()
         sf::Style::Default,
         settings);
     window.setFramerateLimit(60);
+
+    std::unique_ptr<GameWindow> gameWindow = 
+        std::make_unique<GameWindow>(iWidth, iHeight, 60);
     
     //setup test shape
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
     //draw triangular ship
-    sf::CircleShape ship(10.f, 3);
-    ship.setFillColor(sf::Color::Black);
-    ship.setOutlineColor(sf::Color::White);
-    ship.setOutlineThickness(2.0f);
-    ship.setPosition(iWidth / 2.0f, iHeight / 2.0f);
-    sf::FloatRect shipBounds = ship.getGlobalBounds();
-    ship.setOrigin(shipBounds.width / 2, shipBounds.height / 2);
+    //sf::CircleShape ship(10.f, 3);
+    //ship.setFillColor(sf::Color::Black);
+    //ship.setOutlineColor(sf::Color::White);
+    //ship.setOutlineThickness(2.0f);
+    //ship.setPosition(iWidth / 2.0f, iHeight / 2.0f);
+    //sf::FloatRect shipBounds = ship.getGlobalBounds();
+    //ship.setOrigin(shipBounds.width / 2, shipBounds.height / 2);
     float fShipSpeed = 10.0f;
     Ship shipClass = Ship(fShipSpeed);
 
-    shipClass.SetPosition(ship.getPosition());
-    shipClass.SetHeadingAngle(ship.getRotation());
+    sf::Vector2f v2fShipPosition(iWidth / 2.0f, iHeight / 2.0f);
+    shipClass.SetPosition(v2fShipPosition);
+    //shipClass.SetHeadingAngle(ship.getRotation());
 
     //debug ship angle text
     int nFontSize = 25;
@@ -71,7 +58,72 @@ int main()
         v2fTextPosition.y += nFontSize;
     }
 
+    while (gameWindow->IsOpen())
+    {
+        sf::Event event;
+        while (gameWindow->GetWindow().pollEvent(event))
+        {
+			if (event.type == sf::Event::Closed)
+				gameWindow->GetWindow().close();
+		}
 
+        // time
+		sf::Time time = sf::seconds(1.0f / 60.0f);
+		float fDelta = time.asSeconds();
+
+		// update
+        if (gameWindow->HasFocus())
+        {
+			//keyboard input
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Escape))
+            {
+				gameWindow->GetWindow().close();
+			}
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Left))
+            {
+                shipClass.Rotate(-1.0f);
+            }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Right))
+            {
+				shipClass.Rotate(1.0f);
+			}
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Up))
+            {
+                shipClass.ApplyThrust(fDelta);
+            }
+        }
+
+        shipClass.Update(fDelta);
+
+        //debug display
+        std::string sAngle = std::to_string(shipClass.DEBUG_GetRawAngle());
+        texts[0].setString("RawAngle: " + sAngle);
+        std::string sShipPos = std::to_string(shipClass.GetPosition().x);
+        sShipPos.append(", ");
+        sShipPos.append(std::to_string(shipClass.GetPosition().y));
+        texts[1].setString("ShipPosition: " + sShipPos);
+
+        std::string sClass = std::to_string(shipClass.GetHeadingAngle());
+        texts[2].setString("ShapeAngle: " + sClass);
+
+        //render
+        sf::RenderWindow &window = gameWindow->GetWindow();
+
+        gameWindow->BeginRender();
+        
+        window.draw(shape);
+        shipClass.Draw(window);
+
+        for (int i = 0; i < 10; i++)
+            window.draw(texts[i]);
+
+        gameWindow->EndRender();
+    }
+
+    /*
     while (window.isOpen())
     {
         // window events
@@ -107,8 +159,9 @@ int main()
                 shipClass.ApplyThrust(fDelta);
                 ship.setPosition(shipClass.GetPosition());
                 
-                /*float fAngle = (ship.getRotation() - 90) * 3.14159265359f / 180.0f;
-               float fAngle = ship.getRotation() * 3.14159265359f / 180.0f;
+                /*
+                float fAngle = (ship.getRotation() - 90) * 3.14159265359f / 180.0f;
+                float fAngle = ship.getRotation() * 3.14159265359f / 180.0f;
                 sf::Vector2f velocity(
                     fShipSpeed * cos(fAngle), 
                     fShipSpeed * sin(fAngle));
@@ -116,7 +169,9 @@ int main()
                 sf::Vector2f pos = ship.getPosition();
                 pos.x += velocity.x;
                 pos.y += velocity.y;
-                ship.setPosition(pos);*/
+                ship.setPosition(pos);
+                */
+    /*
 			}
 
             //debug display
@@ -141,6 +196,7 @@ int main()
 
         window.display();
     }
+    */
 
     return 0;
 }

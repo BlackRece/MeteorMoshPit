@@ -8,6 +8,7 @@ public:
 
 	virtual void MoveForward(float fDelta, float fSpeed) = 0;
 	virtual void Rotate(float fAngle) = 0;
+	virtual void Update(float fDelta) = 0;
 
 private:
 };
