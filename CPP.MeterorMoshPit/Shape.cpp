@@ -1,5 +1,4 @@
 #include "Shape.h"
-#include "Maths.h"
 
 Shape::Shape()
 	: m_v2fPosition(sf::Vector2f(0.f,0.f))
@@ -88,17 +87,12 @@ sf::Vector2f Shape::GetPosition() const
 
 void Shape::SetRotation(float const fAngle)
 {
-	m_shape.setRotation(Maths::Modf(fAngle, 360.f));
+	m_shape.setRotation(fAngle);
 }
 
 float Shape::GetRotation() const
 {
 	return m_shape.getRotation();
-}
-
-float Shape::GetRotationInRadians() const
-{
-	return (Maths::ToDegrees(m_shape.getRotation()));
 }
 
 void Shape::Draw(sf::RenderWindow& window)

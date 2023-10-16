@@ -109,6 +109,9 @@ int main()
         std::string sClass = std::to_string(shipClass.GetHeadingAngle());
         texts[2].setString("ShapeAngle: " + sClass);
 
+        std::string sDelta = std::to_string(fDelta);
+        texts[3].setString("Delta: " + sDelta);
+
         //render
         sf::RenderWindow &window = gameWindow->GetWindow();
 
