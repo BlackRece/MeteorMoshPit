@@ -31,7 +31,6 @@ public:
 
 	void SetRotation(float const fAngle) override;
 	float GetRotation() const override;
-	float GetRotationInRadians() const;
 
 	void Draw(sf::RenderWindow& window) override;
 

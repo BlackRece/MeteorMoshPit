@@ -1,18 +1,18 @@
-#ifndef SHIP_H
-#define SHIP_H
+#ifndef ASTEROID_H
+#define ASTEROID_H
 
 #include "IMoveable.h"
 #include "Shape.h"
 #include <SFML/Graphics.hpp>
 
-#define SHIP_SIDES 3
-#define SHIP_RADIUS 10.f
+#define ROCK_SIDES 10
+#define ROCK_RADIUS 20.f
 
-class Ship : public IMoveable
+class Asteroid : public IMoveable
 {
 public:
-	Ship(float fSpeed);
-	~Ship();
+	Asteroid(float fSpeed);
+	~Asteroid();
 
 	float GetHeadingAngle() const;
 	void SetHeadingAngle(float fAngle);
@@ -40,4 +40,4 @@ private:
 	float m_fAngleOffset;
 };
 
-#endif // !SHIP_H
+#endif // !ASTEROID_H

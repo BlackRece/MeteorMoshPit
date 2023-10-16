@@ -2,6 +2,7 @@
 #include <string>
 #include "Ship.h"
 #include "GameWindow.h"
+#include "Asteroid.h"
 
 int main()
 {
@@ -27,20 +28,23 @@ int main()
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
-    //draw triangular ship
-    //sf::CircleShape ship(10.f, 3);
-    //ship.setFillColor(sf::Color::Black);
-    //ship.setOutlineColor(sf::Color::White);
-    //ship.setOutlineThickness(2.0f);
-    //ship.setPosition(iWidth / 2.0f, iHeight / 2.0f);
-    //sf::FloatRect shipBounds = ship.getGlobalBounds();
-    //ship.setOrigin(shipBounds.width / 2, shipBounds.height / 2);
+    //setup ship
     float fShipSpeed = 20.0f;
     Ship shipClass = Ship(fShipSpeed);
+    shipClass.SetPosition(sf::Vector2f (iWidth / 2.0f, iHeight / 2.0f));
 
-    sf::Vector2f v2fShipPosition(iWidth / 2.0f, iHeight / 2.0f);
-    shipClass.SetPosition(v2fShipPosition);
-    //shipClass.SetHeadingAngle(ship.getRotation());
+    //setup asteroids
+    // TODO: randomise asteroid positions and speeds
+    float fAsteroidSpeed = 10.0f;
+    int iAstroidCount = 10;
+    std::vector<Asteroid> asteroids;
+    for (int i = 0; i < iAstroidCount; i++)
+    {
+        asteroids.push_back(Asteroid(fAsteroidSpeed));
+        asteroids[i].SetPosition(sf::Vector2f(
+			rand() % iWidth, 
+			rand() % iHeight));
+    }
 
     //debug ship angle text
     int nFontSize = 25;
@@ -135,6 +139,12 @@ int main()
         
         window.draw(shape);
         shipClass.Draw(window);
+
+        for (int i = 0; i < iAstroidCount; i++)
+        {
+            asteroids[i].Update(fDelta);
+			asteroids[i].Draw(window);
+        }
 
         for (int i = 0; i < 10; i++)
             window.draw(texts[i]);
