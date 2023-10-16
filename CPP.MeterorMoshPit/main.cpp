@@ -35,7 +35,7 @@ int main()
     //ship.setPosition(iWidth / 2.0f, iHeight / 2.0f);
     //sf::FloatRect shipBounds = ship.getGlobalBounds();
     //ship.setOrigin(shipBounds.width / 2, shipBounds.height / 2);
-    float fShipSpeed = 10.0f;
+    float fShipSpeed = 20.0f;
     Ship shipClass = Ship(fShipSpeed);
 
     sf::Vector2f v2fShipPosition(iWidth / 2.0f, iHeight / 2.0f);
@@ -63,22 +63,22 @@ int main()
         sf::Event event;
         while (gameWindow->GetWindow().pollEvent(event))
         {
-			if (event.type == sf::Event::Closed)
-				gameWindow->GetWindow().close();
-		}
+            if (event.type == sf::Event::Closed)
+                gameWindow->GetWindow().close();
+        }
 
         // time
-		sf::Time time = sf::seconds(1.0f / 60.0f);
-		float fDelta = time.asSeconds();
+        sf::Time time = sf::seconds(1.0f / 60.0f);
+        float fDelta = time.asSeconds();
 
-		// update
+        // update
         if (gameWindow->HasFocus())
         {
-			//keyboard input
+            //keyboard input
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Escape))
             {
-				gameWindow->GetWindow().close();
-			}
+                gameWindow->GetWindow().close();
+            }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Left))
             {
@@ -87,8 +87,8 @@ int main()
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Right))
             {
-				shipClass.Rotate(1.0f);
-			}
+                shipClass.Rotate(1.0f);
+            }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Up))
             {
@@ -97,20 +97,36 @@ int main()
         }
 
         shipClass.Update(fDelta);
+        // wrap ship around screen
+        // TODO: do this for all IMoveable objects
+        sf::Vector2f v2fShipPosition = shipClass.GetPosition();
+        float fShipRadius = shipClass.GetRadius();
+        if (v2fShipPosition.x - fShipRadius > iWidth)
+            v2fShipPosition.x = 0.0f - fShipRadius;
+        else if (v2fShipPosition.x + fShipRadius < 0.0f)
+            v2fShipPosition.x = iWidth + fShipRadius;
+
+        if (v2fShipPosition.y - fShipRadius > iHeight)
+            v2fShipPosition.y = 0.0f - fShipRadius;
+        else if (v2fShipPosition.y + fShipRadius < 0.0f)
+            v2fShipPosition.y = iHeight + fShipRadius;
+
+        shipClass.SetPosition(v2fShipPosition);
 
         //debug display
-        std::string sAngle = std::to_string(shipClass.DEBUG_GetRawAngle());
-        texts[0].setString("RawAngle: " + sAngle);
-        std::string sShipPos = std::to_string(shipClass.GetPosition().x);
+        std::string sShipRadius = std::to_string(fShipRadius);
+        texts[0].setString("Radius: " + sShipRadius);
+
+        std::string sShipPos = std::to_string(v2fShipPosition.x);
         sShipPos.append(", ");
-        sShipPos.append(std::to_string(shipClass.GetPosition().y));
+        sShipPos.append(std::to_string(v2fShipPosition.y));
         texts[1].setString("ShipPosition: " + sShipPos);
 
         std::string sClass = std::to_string(shipClass.GetHeadingAngle());
         texts[2].setString("ShapeAngle: " + sClass);
 
-        std::string sDelta = std::to_string(fDelta);
-        texts[3].setString("Delta: " + sDelta);
+        texts[3].setString("Width: " + std::to_string(iWidth));
+        texts[4].setString("Height: " + std::to_string(iHeight));
 
         //render
         sf::RenderWindow &window = gameWindow->GetWindow();

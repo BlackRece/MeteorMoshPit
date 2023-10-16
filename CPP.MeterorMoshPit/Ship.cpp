@@ -5,7 +5,7 @@ Ship::Ship(float fSpeed)
 	: m_v2fPosition(0.f, 0.f)
 	, m_fAngle(0.f)
 	, m_fMoveSpeed(fSpeed)
-	, m_fDrag(0.90f)
+	, m_fDrag(0.99f)
 	, m_fTurnSpeed(1.f)
 	, m_fAngleOffset(90.f)
 	, m_v2fVelocity(0.f, 0.f)
@@ -56,6 +56,11 @@ void Ship::MoveForward(float fDelta, float fMoveSpeed)
 void Ship::Rotate(float fAngle)
 {
 	SetHeadingAngle(GetHeadingAngle() + (fAngle * m_fTurnSpeed));
+}
+
+float Ship::GetRadius() const
+{
+	return m_shape.GetRadius();
 }
 
 void Ship::Update(float fDelta)

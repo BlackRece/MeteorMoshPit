@@ -14,12 +14,12 @@ public:
 	Ship(float fSpeed);
 	~Ship();
 
-	float DEBUG_GetRawAngle() const { return m_fAngle; }
 	float GetHeadingAngle() const;
 	void SetHeadingAngle(float fAngle);
 	sf::Vector2f GetPosition() const;
 	void SetPosition(sf::Vector2f v2fPosition);
 	void ApplyThrust(float fDelta);
+	float GetRadius() const;
 
 	// IMoveable
 	void MoveForward(float fDelta, float fSpeed) override;
