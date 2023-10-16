@@ -32,8 +32,10 @@ public:
 private:
 	Shape m_shape;
 	sf::Vector2f m_v2fPosition;
+	sf::Vector2f m_v2fVelocity;
 	float m_fAngle;
 	float m_fMoveSpeed;
+	float m_fDrag;
 	float m_fTurnSpeed;
 	float m_fAngleOffset;
 };

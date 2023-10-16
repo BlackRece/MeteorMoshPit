@@ -5,8 +5,10 @@ Ship::Ship(float fSpeed)
 	: m_v2fPosition(0.f, 0.f)
 	, m_fAngle(0.f)
 	, m_fMoveSpeed(fSpeed)
+	, m_fDrag(0.90f)
 	, m_fTurnSpeed(1.f)
 	, m_fAngleOffset(90.f)
+	, m_v2fVelocity(0.f, 0.f)
 {
 	m_shape = Shape(m_v2fPosition, SHIP_RADIUS, SHIP_SIDES);
 	m_shape.SetLineThickness(2.f);
@@ -44,13 +46,11 @@ void Ship::MoveForward(float fDelta, float fMoveSpeed)
 {
 	float fAngle = Maths::ToRadians(GetHeadingAngle());
 
-	sf::Vector2f velocity(
+	m_v2fVelocity = sf::Vector2f(
 		cos(fAngle), 
 		sin(fAngle));
 
-	velocity *= fMoveSpeed * fDelta;
-
-	m_v2fPosition += velocity;
+	m_v2fVelocity *= fMoveSpeed * fDelta;
 }
 
 void Ship::Rotate(float fAngle)
@@ -60,7 +60,9 @@ void Ship::Rotate(float fAngle)
 
 void Ship::Update(float fDelta)
 {
+	m_v2fPosition += m_v2fVelocity;
 	m_shape.SetPosition(m_v2fPosition);
+	m_v2fVelocity *= m_fDrag;
 }
 
 void Ship::Draw(sf::RenderWindow& window)
