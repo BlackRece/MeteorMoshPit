@@ -38,12 +38,14 @@ private:
 	void SetOrigin();
 
 	sf::Vector2f	m_v2fPosition;
-	sf::CircleShape m_shape;
+	sf::CircleShape m_circleShape;
+	sf::ConvexShape m_convexShape;
 	sf::Color		m_fillColour;
 	sf::Color		m_lineColor;
 	float			m_fLineThickness;
 	float			m_fRadius;
 	int				m_iPoints;
+	bool			m_bIsCircle;
 };
 
 #endif // !SHAPE_H
