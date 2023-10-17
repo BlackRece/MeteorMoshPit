@@ -37,7 +37,7 @@ void Game::Update()
 
 void Game::Render()
 {
-    auto &window = m_gameWindow->GetWindow();
+    sf::RenderWindow &window = m_gameWindow->GetWindow();
     window.clear();
 
     //for (std::shared_ptr<IDrawable> pDrawable : m_vEntities)

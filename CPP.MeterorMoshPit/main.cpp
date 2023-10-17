@@ -14,6 +14,7 @@ int main()
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
 
+    // TODO: two windows are instantiated when only one is needed
     sf::RenderWindow window(
         sf::VideoMode(iWidth, iHeight),
         sTitle,
@@ -24,26 +25,24 @@ int main()
     std::unique_ptr<GameWindow> gameWindow = 
         std::make_unique<GameWindow>(iWidth, iHeight, 60);
     
-    //setup test shape
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
-
     //setup ship
     float fShipSpeed = 20.0f;
     Ship shipClass = Ship(fShipSpeed);
     shipClass.SetPosition(sf::Vector2f (iWidth / 2.0f, iHeight / 2.0f));
 
     //setup asteroids
-    // TODO: randomise asteroid positions and speeds
     float fAsteroidSpeed = 10.0f;
-    int iAstroidCount = 10;
+    float fAsteroidRadius = 50.0f;
+    int iAsteroidPoints = 15;
+    int iAstroidCount = 5;
     std::vector<Asteroid> asteroids;
     for (int i = 0; i < iAstroidCount; i++)
     {
-        asteroids.push_back(Asteroid(fAsteroidSpeed));
+        asteroids.push_back(Asteroid(fAsteroidSpeed, fAsteroidRadius, iAsteroidPoints));
         asteroids[i].SetPosition(sf::Vector2f(
 			rand() % iWidth, 
 			rand() % iHeight));
+        asteroids[i].SetHeadingAngle(rand() % 360);
     }
 
     //debug ship angle text
@@ -64,6 +63,8 @@ int main()
 
     while (gameWindow->IsOpen())
     {
+        // TODO: move window events to GameWindow class
+        // TODO: split this loop into separate functions
         sf::Event event;
         while (gameWindow->GetWindow().pollEvent(event))
         {

@@ -11,7 +11,7 @@
 class Asteroid : public IMoveable
 {
 public:
-	Asteroid(float fSpeed);
+	Asteroid(float fSpeed, float fRadius, int iPoints);
 	~Asteroid();
 
 	float GetHeadingAngle() const;
@@ -33,11 +33,13 @@ private:
 	Shape m_shape;
 	sf::Vector2f m_v2fPosition;
 	sf::Vector2f m_v2fVelocity;
-	float m_fAngle;
-	float m_fMoveSpeed;
-	float m_fDrag;
-	float m_fTurnSpeed;
-	float m_fAngleOffset;
+	float	m_fAngle;
+	float	m_fMoveSpeed;
+	float	m_fRadius;
+	int		m_iPoints;
+	float	m_fDrag;
+	float	m_fTurnSpeed;
+	float	m_fAngleOffset;
 };
 
 #endif // !ASTEROID_H

@@ -1,4 +1,5 @@
 #include "Shape.h"
+#include "Maths.h"
 
 Shape::Shape()
 	: m_v2fPosition(sf::Vector2f(0.f,0.f))
@@ -36,12 +37,13 @@ void Shape::SetShape()
 	else 
 	{
 		m_convexShape = sf::ConvexShape(m_iPoints);
-		float fAngle = 360.f / m_iPoints;
+		float fAngle = 2 * Maths::PI / m_iPoints;
 		for (int i = 0; i < m_iPoints; i++)
 		{
+			float fOffset = (rand() % 30) - 15;
 			sf::Vector2f v2fPoint(
-				m_fRadius * cos(fAngle * i),
-				m_fRadius * sin(fAngle * i));
+				(m_fRadius + fOffset) * cos(fAngle * i),
+				(m_fRadius + fOffset) * -sin(fAngle * i));
 
 			m_convexShape.setPoint(i, v2fPoint);
 		}
@@ -101,6 +103,7 @@ float Shape::GetLineThickness() const
 void Shape::SetRadius(float fRadius)
 {
 	m_fRadius = fRadius;
+	SetShape();
 }
 
 float Shape::GetRadius() const 
