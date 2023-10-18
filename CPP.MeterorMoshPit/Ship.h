@@ -14,23 +14,22 @@ public:
 	Ship(float fSpeed);
 	~Ship();
 
+	std::shared_ptr<Shape> GetShape() const;
+
 	float GetHeadingAngle() const;
 	void SetHeadingAngle(float fAngle);
-	sf::Vector2f GetPosition() const;
-	void SetPosition(sf::Vector2f v2fPosition);
 	void ApplyThrust(float fDelta);
-	float GetRadius() const;
 
 	// IMoveable
 	void MoveForward(float fDelta, float fSpeed) override;
+	sf::Vector2f GetPosition() const override;
+	void SetPosition(sf::Vector2f v2fPosition) override;
 	void Rotate(float fAngle) override;
 	void Update(float fDelta) override;
-
-	// IDrawable
-	void Draw(sf::RenderWindow& window);
+	float GetRadius() const override;
 
 private:
-	Shape m_shape;
+	std::shared_ptr<Shape> m_pShape;
 	sf::Vector2f m_v2fPosition;
 	sf::Vector2f m_v2fVelocity;
 	float m_fAngle;

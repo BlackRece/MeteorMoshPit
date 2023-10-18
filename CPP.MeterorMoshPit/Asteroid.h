@@ -5,32 +5,31 @@
 #include "Shape.h"
 #include <SFML/Graphics.hpp>
 
-#define ROCK_SIDES 10
-#define ROCK_RADIUS 20.f
-
 class Asteroid : public IMoveable
 {
 public:
 	Asteroid(float fSpeed, float fRadius, int iPoints);
 	~Asteroid();
 
+	std::shared_ptr<Shape> GetShape() const;
+
 	float GetHeadingAngle() const;
 	void SetHeadingAngle(float fAngle);
-	sf::Vector2f GetPosition() const;
-	void SetPosition(sf::Vector2f v2fPosition);
 	void ApplyThrust(float fDelta);
-	float GetRadius() const;
 
 	// IMoveable
 	void MoveForward(float fDelta, float fSpeed) override;
+	sf::Vector2f GetPosition() const override;
+	void SetPosition(sf::Vector2f v2fPosition) override;
 	void Rotate(float fAngle) override;
 	void Update(float fDelta) override;
+	float GetRadius() const override;
 
 	// IDrawable
 	void Draw(sf::RenderWindow& window);
 
 private:
-	Shape m_shape;
+	std::shared_ptr<Shape> m_shape;
 	sf::Vector2f m_v2fPosition;
 	sf::Vector2f m_v2fVelocity;
 	float	m_fAngle;

@@ -5,6 +5,7 @@
 
 #include "GameWindow.h"
 #include "Ship.h"
+#include "Asteroid.h"
 
 class Game
 {
@@ -19,17 +20,22 @@ private:
     void Render();
 
     void UpdateKeyboardInput();
+    sf::Vector2f WrapPosition(sf::Vector2f v2fPosition, float fRadius);
 
     std::unique_ptr<GameWindow> m_gameWindow;
 
     std::string const sTitle = "Meteor Mosh Pit";
-    float fFrameTime = 1.0f / iFPS;
     int iFPS;
-    float m_fDeltaTime;
+    float fFrameTime = 1.0f / iFPS;
+    float m_fDelta;
     sf::Clock m_clock;
+    sf::Text m_texts[10];
 
-    std::unique_ptr<Ship> ship;
-    std::vector<std::shared_ptr<Ship>> m_vEntities;
+    std::shared_ptr<Ship> m_pShip;
+    std::vector<std::shared_ptr<Asteroid>> m_vecAsteroids;
+
+    std::vector<std::shared_ptr<IMoveable>> m_vecMovables;
+    std::vector<std::shared_ptr<IDrawable>> m_vecDrawables;
 };
 
  #endif // !GAME_H

@@ -46,3 +46,13 @@ void GameWindow::EndRender()
 {
 	m_rWindow->display();
 }
+
+int GameWindow::GetWidth() const
+{
+    return m_iWidth;
+}
+
+int GameWindow::GetHeight() const
+{
+    return m_iHeight;
+}

@@ -19,6 +19,9 @@ public:
     void BeginRender();
     void EndRender();
 
+    int GetWidth() const;
+    int GetHeight() const;
+
 private:
     std::string const sTitle = "Meteor Mosh Pit";
 
