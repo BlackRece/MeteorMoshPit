@@ -28,12 +28,15 @@ Shape::~Shape()
 void Shape::SetShape()
 {
 	m_convexShape = sf::ConvexShape(m_iPoints);
+	int iVariance = floor(m_fRadius / 2);
+	int iHalf = floor(iVariance / 2);
+
 	float fAngle = 2 * Maths::PI / m_iPoints;
 	for (int i = 0; i < m_iPoints; i++)
 	{
 		float fOffset = (m_iPoints <= 4) 
 			? 0.f
-			: (rand() % 30) - 15;
+			: (rand() % iVariance) - iHalf;
 		sf::Vector2f v2fPoint(
 			(m_fRadius + fOffset) * cos(fAngle * i),
 			(m_fRadius + fOffset) * sin(fAngle * i));
