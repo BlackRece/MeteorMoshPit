@@ -7,7 +7,7 @@ Ship::Ship(float fSpeed)
 	, m_fMoveSpeed(fSpeed)
 	, m_fDrag(0.99f)
 	, m_fTurnSpeed(1.f)
-	, m_fAngleOffset(90.f)
+	, m_fAngleOffset(0.0f)
 	, m_v2fVelocity(0.f, 0.f)
 {
 	m_pShape = std::make_shared<Shape>(m_v2fPosition, SHIP_RADIUS, SHIP_SIDES);
