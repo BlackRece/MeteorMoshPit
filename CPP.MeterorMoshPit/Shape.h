@@ -35,8 +35,6 @@ public:
 	void Draw(sf::RenderWindow& window) override;
 
 private:
-	void SetOrigin();
-
 	sf::Vector2f	m_v2fPosition;
 	sf::ConvexShape m_convexShape;
 	sf::Color		m_fillColour;

@@ -23,8 +23,10 @@ Game::Game(int const iWidth, int const iHeight, int const iFramesPerSecond)
     {
         std::shared_ptr<Asteroid> pAsteroid = 
             std::make_shared<Asteroid>(fAsteroidSpeed, fAsteroidRadius, iAsteroidPoints);
-        pAsteroid->SetPosition(sf::Vector2f(rand() % iWidth, rand() % iHeight));
-        pAsteroid->SetHeadingAngle(rand() % 360);
+        pAsteroid->SetPosition(sf::Vector2f(
+            (float)(rand() % iWidth),
+            (float)(rand() % iHeight)));
+        pAsteroid->SetHeadingAngle((float)(rand() % 360));
         m_vecAsteroids.push_back(std::move(pAsteroid));
         m_vecMovables.push_back(m_vecAsteroids[i]);
         m_vecDrawables.push_back(m_vecAsteroids[i]->GetShape());

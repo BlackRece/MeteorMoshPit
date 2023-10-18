@@ -9,7 +9,6 @@ Shape::Shape()
 	, m_lineColor(sf::Color::White)
 	, m_fLineThickness(1.f)
 {
-	m_bIsCircle = false;
 }
 
 Shape::Shape(sf::Vector2f v2fPosition, float fRadius, int iPoints)
@@ -33,7 +32,7 @@ void Shape::SetShape()
 	for (int i = 0; i < m_iPoints; i++)
 	{
 		float fOffset = (m_iPoints <= 4) 
-			? 0
+			? 0.f
 			: (rand() % 30) - 15;
 		sf::Vector2f v2fPoint(
 			(m_fRadius + fOffset) * cos(fAngle * i),
@@ -41,8 +40,6 @@ void Shape::SetShape()
 
 		m_convexShape.setPoint(i, v2fPoint);
 	}
-
-	SetOrigin();
 }
 
 void Shape::SetFillColour(sf::Color fillColour)
@@ -113,10 +110,4 @@ float Shape::GetRotation() const
 void Shape::Draw(sf::RenderWindow& window)
 {
 	window.draw(m_convexShape);
-}
-
-void Shape::SetOrigin()
-{
-	sf::FloatRect shipBounds = m_convexShape.getGlobalBounds();
-	m_convexShape.setOrigin(shipBounds.width / 2, shipBounds.height / 2);
 }

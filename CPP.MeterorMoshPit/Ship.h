@@ -36,7 +36,6 @@ private:
 	float m_fMoveSpeed;
 	float m_fDrag;
 	float m_fTurnSpeed;
-	float m_fAngleOffset;
 };
 
 #endif // !SHIP_H

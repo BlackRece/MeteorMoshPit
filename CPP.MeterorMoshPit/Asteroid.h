@@ -35,7 +35,6 @@ private:
 	int		m_iPoints;
 	float	m_fDrag;
 	float	m_fTurnSpeed;
-	float	m_fAngleOffset;
 };
 
 #endif // !ASTEROID_H

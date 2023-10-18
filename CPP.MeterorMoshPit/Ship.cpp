@@ -7,7 +7,6 @@ Ship::Ship(float fSpeed)
 	, m_fMoveSpeed(fSpeed)
 	, m_fDrag(0.99f)
 	, m_fTurnSpeed(1.f)
-	, m_fAngleOffset(0.0f)
 	, m_v2fVelocity(0.f, 0.f)
 {
 	m_pShape = std::make_shared<Shape>(m_v2fPosition, SHIP_RADIUS, SHIP_SIDES);
@@ -26,12 +25,12 @@ std::shared_ptr<Shape> Ship::GetShape() const
 
 float Ship::GetHeadingAngle() const
 {
-	return (Maths::Modf(m_pShape->GetRotation() - m_fAngleOffset, 360.f));
+	return (Maths::Modf(m_pShape->GetRotation(), 360.f));
 }
 
 void Ship::SetHeadingAngle(float fAngle)
 {
-	m_pShape->SetRotation(Maths::Modf(fAngle + m_fAngleOffset, 360.f));
+	m_pShape->SetRotation(Maths::Modf(fAngle, 360.f));
 }
 
 sf::Vector2f Ship::GetPosition() const 

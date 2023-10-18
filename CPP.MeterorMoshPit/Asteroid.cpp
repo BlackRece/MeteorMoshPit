@@ -9,7 +9,6 @@ Asteroid::Asteroid(float fSpeed, float fRadius, int iPoints)
 	, m_iPoints(iPoints)
 	, m_fDrag(0.99f)
 	, m_fTurnSpeed(1.f)
-	, m_fAngleOffset(90.f)
 	, m_v2fVelocity(0.f, 0.f)
 {
 	m_shape = std::make_shared<Shape>(m_v2fPosition, m_fRadius, m_iPoints);
@@ -28,12 +27,12 @@ std::shared_ptr<Shape> Asteroid::GetShape() const
 
 float Asteroid::GetHeadingAngle() const
 {
-	return (Maths::Modf(m_shape->GetRotation() - m_fAngleOffset, 360.f));
+	return (Maths::Modf(m_shape->GetRotation(), 360.f));
 }
 
 void Asteroid::SetHeadingAngle(float fAngle)
 {
-	m_shape->SetRotation(Maths::Modf(fAngle + m_fAngleOffset, 360.f));
+	m_shape->SetRotation(Maths::Modf(fAngle, 360.f));
 }
 
 sf::Vector2f Asteroid::GetPosition() const
