@@ -127,19 +127,27 @@ void Game::UpdateKeyboardInput()
         m_gameWindow->GetWindow().close();
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Left))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Left) ||
+        sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::A))
     {
         m_pShip->Rotate(-1.0f);
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Right))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Right) ||
+        sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::D))
     {
         m_pShip->Rotate(1.0f);
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Up))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Up) ||
+        sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::W))
     {
         m_pShip->ApplyThrust(m_fDelta);
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Space))
+    {
+        //m_pShip->Fire();
     }
 }
 
