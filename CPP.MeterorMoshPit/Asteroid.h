@@ -8,7 +8,7 @@
 class Asteroid : public IMoveable
 {
 public:
-	Asteroid(float fSpeed, float fRadius, int iPoints);
+	Asteroid(float fRadius, int iPoints);
 	~Asteroid();
 
 	std::shared_ptr<Shape> GetShape() const;
@@ -26,6 +26,8 @@ public:
 	float GetRadius() const override;
 
 private:
+	float const m_fBaseSpeed = 10.f;
+
 	std::shared_ptr<Shape> m_shape;
 	sf::Vector2f m_v2fPosition;
 	sf::Vector2f m_v2fVelocity;

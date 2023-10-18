@@ -15,14 +15,13 @@ Game::Game(int const iWidth, int const iHeight, int const iFramesPerSecond)
     m_vecDrawables.push_back(m_pShip->GetShape());
 
     // setup asteroids
-    float fAsteroidSpeed = 10.0f;
     float fAsteroidRadius = 50.0f;
     int iAsteroidPoints = 15;
     int iAstroidCount = 5;
     for (int i = 0; i < iAstroidCount; i++)
     {
         std::shared_ptr<Asteroid> pAsteroid = 
-            std::make_shared<Asteroid>(fAsteroidSpeed, fAsteroidRadius, iAsteroidPoints);
+            std::make_shared<Asteroid>(fAsteroidRadius, iAsteroidPoints);
         pAsteroid->SetPosition(sf::Vector2f(
             (float)(rand() % iWidth),
             (float)(rand() % iHeight)));
@@ -69,8 +68,6 @@ void Game::Run()
             if (event.type == sf::Event::Closed)
                 rWindow.close();
         }
-
-        
 
         Update();
         Render();

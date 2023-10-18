@@ -1,16 +1,17 @@
 #include "Asteroid.h"
 #include "Maths.h"
 
-Asteroid::Asteroid(float fSpeed, float fRadius, int iPoints)
+Asteroid::Asteroid(float fRadius, int iPoints)
 	: m_v2fPosition(0.f, 0.f)
 	, m_fAngle(0.f)
-	, m_fMoveSpeed(fSpeed)
 	, m_fRadius(fRadius)
 	, m_iPoints(iPoints)
 	, m_fDrag(0.99f)
 	, m_fTurnSpeed(1.f)
 	, m_v2fVelocity(0.f, 0.f)
 {
+	m_fMoveSpeed = (m_fBaseSpeed * (m_fBaseSpeed / m_fRadius)) * 10.f;
+
 	m_shape = std::make_shared<Shape>(m_v2fPosition, m_fRadius, m_iPoints);
 	m_shape->SetLineThickness(2.f);
 	m_shape->SetShape();
@@ -73,6 +74,7 @@ void Asteroid::Rotate(float fAngle)
 
 void Asteroid::Update(float fDelta)
 {
+	MoveForward(fDelta, m_fMoveSpeed);
 	m_v2fPosition += m_v2fVelocity;
 	m_shape->SetPosition(m_v2fPosition);
 }
