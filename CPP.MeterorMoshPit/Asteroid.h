@@ -25,9 +25,6 @@ public:
 	void Update(float fDelta) override;
 	float GetRadius() const override;
 
-	// IDrawable
-	void Draw(sf::RenderWindow& window);
-
 private:
 	std::shared_ptr<Shape> m_shape;
 	sf::Vector2f m_v2fPosition;
