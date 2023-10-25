@@ -34,8 +34,8 @@ private:
     std::shared_ptr<Ship> m_pShip;
     std::vector<std::shared_ptr<Asteroid>> m_vecAsteroids;
 
-    std::vector<std::shared_ptr<IMoveable>> m_vecMovables;
-    std::vector<std::shared_ptr<IDrawable>> m_vecDrawables;
+    std::vector<std::shared_ptr<AMoveable>> m_vecMovables;
+    std::vector<std::shared_ptr<ADrawable>> m_vecDrawables;
 };
 
  #endif // !GAME_H

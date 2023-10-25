@@ -10,9 +10,10 @@ Game::Game(int const iWidth, int const iHeight, int const iFramesPerSecond)
     // setup ship
     float fShipSpeed = 20.0f;
     m_pShip = std::make_shared<Ship>(fShipSpeed);
-    m_pShip->SetPosition(sf::Vector2f(iWidth / 2.0f, iHeight / 2.0f));
+    m_pShip->SetLocation(sf::Vector2f(iWidth / 2.0f, iHeight / 2.0f));
     m_vecMovables.push_back(m_pShip);
-    m_vecDrawables.push_back(m_pShip->GetShape());
+    m_vecDrawables.push_back(m_pShip);
+    //m_pShip->GetProjectiles(m_vecDrawables, m_vecMovables);
 
     // setup asteroids
     float fAsteroidRadius = 50.0f;
@@ -22,13 +23,14 @@ Game::Game(int const iWidth, int const iHeight, int const iFramesPerSecond)
     {
         std::shared_ptr<Asteroid> pAsteroid = 
             std::make_shared<Asteroid>(fAsteroidRadius, iAsteroidPoints);
-        pAsteroid->SetPosition(sf::Vector2f(
+        pAsteroid->SetLocation(sf::Vector2f(
             (float)(rand() % iWidth),
             (float)(rand() % iHeight)));
         pAsteroid->SetHeadingAngle((float)(rand() % 360));
+
         m_vecAsteroids.push_back(std::move(pAsteroid));
         m_vecMovables.push_back(m_vecAsteroids[i]);
-        m_vecDrawables.push_back(m_vecAsteroids[i]->GetShape());
+        m_vecDrawables.push_back(m_vecAsteroids[i]);
     }
 
     // setup debug text log
@@ -78,10 +80,10 @@ void Game::Update()
 {
     UpdateKeyboardInput();
 
-    for (std::shared_ptr<IMoveable> pMovable : m_vecMovables)
+    for (std::shared_ptr<AMoveable> pGameObjects : m_vecMovables)
     {
-        pMovable->Update(m_fDelta);
-        pMovable->SetPosition(WrapPosition(pMovable->GetPosition(), pMovable->GetRadius()));
+        pGameObjects->Update(m_fDelta);
+        //pGameObjects->SetPosition(WrapPosition(pGameObjects->GetPosition(), pGameObjects->GetRadius()));
 	}
 
     //debug display
@@ -93,8 +95,8 @@ void Game::Update()
     sShipPos.append(std::to_string(m_pShip->GetPosition().y));
     m_texts[1].setString("ShipPosition: " + sShipPos);
 
-    std::string sClass = std::to_string(m_pShip->GetHeadingAngle());
-    m_texts[2].setString("ShapeAngle: " + sClass);
+    //std::string sClass = std::to_string(m_pShip->GetHeadingAngle());
+    //m_texts[2].setString("ShapeAngle: " + sClass);
 
     m_texts[3].setString("Width: " + std::to_string(m_gameWindow->GetWidth()));
     m_texts[4].setString("Height: " + std::to_string(m_gameWindow->GetHeight()));
@@ -105,8 +107,9 @@ void Game::Render()
     sf::RenderWindow &window = m_gameWindow->GetWindow();
     m_gameWindow->BeginRender();
 
-    for (std::shared_ptr<IDrawable> pDrawable : m_vecDrawables)
+    for (std::shared_ptr<ADrawable> pDrawable : m_vecDrawables)
     {
+        pDrawable->WrapLocation(m_gameWindow->GetWidth(), m_gameWindow->GetHeight());
         pDrawable->Draw(window);
     }
 

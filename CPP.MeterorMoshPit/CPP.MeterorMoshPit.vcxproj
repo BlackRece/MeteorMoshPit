@@ -133,10 +133,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AMoveable.cpp" />
     <ClCompile Include="Asteroid.cpp" />
+    <ClCompile Include="ADrawable.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Ship.cpp" />
   </ItemGroup>
@@ -144,10 +147,12 @@
     <ClInclude Include="Asteroid.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameWindow.h" />
+    <ClInclude Include="IGameObject.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Maths.h" />
-    <ClInclude Include="IDrawable.h" />
-    <ClInclude Include="IMoveable.h" />
+    <ClInclude Include="ADrawable.h" />
+    <ClInclude Include="AMoveable.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="Ship.h" />
   </ItemGroup>

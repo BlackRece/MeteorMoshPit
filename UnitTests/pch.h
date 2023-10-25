@@ -12,8 +12,8 @@
 
 #include <SFML/System/Vector2.hpp>
 
-#include "../CPP.MeterorMoshPit/IMoveable.h"
-#include "../CPP.MeterorMoshPit/IDrawable.h"
+#include "../CPP.MeterorMoshPit/AMoveable.h"
+#include "../CPP.MeterorMoshPit/ADrawable.h"
 //#include "../CPP.MeterorMoshPit/Shape.h"
 //#include "../CPP.MeterorMoshPit/Ship.h"
 
