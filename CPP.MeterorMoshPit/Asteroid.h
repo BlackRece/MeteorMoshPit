@@ -10,10 +10,6 @@ public:
 	Asteroid(float fRadius, int iPoints);
 	~Asteroid();
 
-	void ApplyThrust(float fDelta);
-
-	//void Rotate(float fAngle);
-
 	// AMoveable
 	void Update(float fDelta) override;
 

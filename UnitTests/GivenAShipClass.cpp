@@ -15,8 +15,8 @@ namespace GivenAShipClass
             float fSpeed = 1.f;
 
             Ship ship = Ship(fSpeed);
-            ship.SetHeadingAngle(fExpectedAngle);
-            float fActualAngle = ship.GetHeadingAngle();
+            ship.SetHeading(fExpectedAngle);
+            float fActualAngle = ship.GetHeading();
 
             Assert::AreEqual(fExpectedAngle, fActualAngle);
         }
@@ -32,7 +32,7 @@ namespace GivenAShipClass
             sf::Vector2f v2fStartingPosition(0.f, 0.f);
 
             Ship ship = Ship(fSpeed);
-            ship.SetHeadingAngle(fHeadingAngle );
+            ship.SetHeading(fHeadingAngle );
             ship.SetPosition(v2fStartingPosition);
 
             sf::Vector2f v2fVelocity = sf::Vector2f(

@@ -26,12 +26,26 @@ Game::Game(int const iWidth, int const iHeight, int const iFramesPerSecond)
         pAsteroid->SetLocation(sf::Vector2f(
             (float)(rand() % iWidth),
             (float)(rand() % iHeight)));
-        pAsteroid->SetHeadingAngle((float)(rand() % 360));
+        pAsteroid->SetHeading((float)(rand() % 360));
 
         m_vecAsteroids.push_back(std::move(pAsteroid));
         m_vecMovables.push_back(m_vecAsteroids[i]);
         m_vecDrawables.push_back(m_vecAsteroids[i]);
     }
+
+    float fProjectileRadius = 2.0f;
+    float fProjectileLifeTime = 2.0f;
+    float fProjectileSpeed = 200.0f;
+    int iProjectileCount = 10;
+    for (int i = 0; i < iProjectileCount; i++)
+	{
+		std::shared_ptr<Projectile> pProjectile =
+			std::make_shared<Projectile>(fProjectileRadius, fProjectileSpeed, fProjectileLifeTime);
+
+		m_vecProjectiles.push_back(std::move(pProjectile));
+		m_vecMovables.push_back(m_vecProjectiles[i]);
+		m_vecDrawables.push_back(m_vecProjectiles[i]);
+	}
 
     // setup debug text log
     int nFontSize = 25;
@@ -150,26 +164,13 @@ void Game::UpdateKeyboardInput()
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Space))
     {
-        //m_pShip->Fire();
+        if (!m_pShip->IsFiring())
+        {
+            m_pShip->FireProjectile();
+            m_vecProjectiles[0]->SetLocation(m_pShip->GetLocation());
+            m_vecProjectiles[0]->SetHeading(m_pShip->GetHeading());
+            m_vecProjectiles[0]->SetRotation(m_pShip->GetRotation());
+            m_vecProjectiles[0]->SetAlive(true);
+        }
     }
-}
-
-sf::Vector2f Game::WrapPosition(sf::Vector2f v2fPosition, float fRadius)
-{
-    sf::Vector2f v2fNewPosition = v2fPosition;
-
-    int iWidth = m_gameWindow->GetWidth();
-    int iHeight = m_gameWindow->GetHeight();
-
-    if (v2fPosition.x - fRadius > iWidth)
-        v2fNewPosition.x = 0.0f - fRadius;
-    else if (v2fPosition.x + fRadius < 0.0f)
-        v2fNewPosition.x = iWidth + fRadius;
-
-    if (v2fPosition.y - fRadius > iHeight)
-        v2fNewPosition.y = 0.0f - fRadius;
-    else if (v2fPosition.y + fRadius < 0.0f)
-        v2fNewPosition.y = iHeight + fRadius;
-
-    return v2fNewPosition;
 }

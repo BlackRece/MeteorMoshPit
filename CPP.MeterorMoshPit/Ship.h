@@ -14,6 +14,8 @@ public:
 	~Ship();
 
 	void ApplyThrust(float fDelta);
+	bool IsFiring();
+	void FireProjectile();
 
 	void Rotate(float fAngle);
 
@@ -22,9 +24,8 @@ public:
 	//void GetProjectiles(m_vecDrawables, m_vecMovables);
 
 private:
-	float m_fAngle;
-	float m_fDrag;
-	float m_fTurnSpeed;
+	float m_fFireDelay;
+	float m_fFireTimer;
 };
 
 #endif // !SHIP_H

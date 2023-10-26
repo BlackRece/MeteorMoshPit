@@ -17,20 +17,12 @@ Asteroid::~Asteroid()
 {
 }
 
-void Asteroid::ApplyThrust(float fDelta)
-{
-	MoveForward(fDelta);
-}
-
-//void Asteroid::Rotate(float fAngle)
-//{
-//	SetHeadingAngle(GetHeadingAngle() + (fAngle * m_fTurnSpeed));
-//}
-
 void Asteroid::Update(float fDelta)
 {
+	MoveForward(fDelta);
+
 	SetPosition(GetLocation());
-	UpdateMovement(fDelta);
+	AMoveable::Update(fDelta);
 	SetLocation(GetPosition());
 }
 

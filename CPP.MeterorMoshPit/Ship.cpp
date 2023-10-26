@@ -1,9 +1,7 @@
 #include "Ship.h"
 
 Ship::Ship(float fSpeed)
-	: m_fAngle(0.f)
-	, m_fDrag(0.99f)
-	, m_fTurnSpeed(1.f)
+	: m_fFireTimer(0.f), m_fFireDelay(0.5f)
 {
 	SetSpeed(fSpeed);
 
@@ -20,15 +18,29 @@ void Ship::ApplyThrust(float fDelta)
 	MoveForward(fDelta);
 }
 
+bool Ship::IsFiring()
+{
+	return m_fFireTimer > 0.f;
+}
+
+void Ship::FireProjectile()
+{
+	if (m_fFireTimer <= 0.f)
+		m_fFireTimer = m_fFireDelay;
+}
+
 void Ship::Rotate(float fAngle)
 {
-	SetHeadingAngle(GetRotation() + (fAngle * m_fTurnSpeed));
-	SetRotation(GetHeadingAngle());
+	TurnTowards(GetRotation() + fAngle);
+	SetRotation(GetHeading());
 }
 
 void Ship::Update(float fDelta)
 {
 	SetPosition(GetLocation());
-	UpdateMovement(fDelta);
+	AMoveable::Update(fDelta);
 	SetLocation(GetPosition());
+
+	if (m_fFireTimer > 0.f)
+		m_fFireTimer -= fDelta;
 }

@@ -10,12 +10,17 @@ AMoveable::AMoveable()
 {
 }
 
-void AMoveable::SetHeadingAngle(float fAngle)
+void AMoveable::TurnTowards(float fAngle)
+{
+	m_fAngle = Maths::Modf(fAngle * m_fTurnSpeed, 360.f);
+}
+
+void AMoveable::SetHeading(float fAngle)
 {
 	m_fAngle = Maths::Modf(fAngle, 360.f);
 }
 
-float AMoveable::GetHeadingAngle() const
+float AMoveable::GetHeading() const
 {
 	return m_fAngle;
 }
@@ -32,7 +37,7 @@ void AMoveable::SetPosition(sf::Vector2f v2fPosition)
 
 void AMoveable::MoveForward(float fDelta)
 {
-	float fAngle = Maths::ToRadians(GetHeadingAngle());
+	float fAngle = Maths::ToRadians(GetHeading());
 
 	m_v2fVelocity = sf::Vector2f(
 		cos(fAngle),
@@ -41,14 +46,10 @@ void AMoveable::MoveForward(float fDelta)
 	m_v2fVelocity *= m_fMoveSpeed * fDelta;
 }
 
-void AMoveable::UpdateMovement(float fDelta)
+void AMoveable::Update(float fDelta)
 {
 	m_v2fPosition += m_v2fVelocity;
 	m_v2fVelocity *= m_fDrag;
-}
-
-void AMoveable::Update(float fDelta)
-{
 }
 
 void AMoveable::SetSpeed(float fSpeed)

@@ -6,6 +6,7 @@
 #include "GameWindow.h"
 #include "Ship.h"
 #include "Asteroid.h"
+#include "Projectile.h"
 
 class Game
 {
@@ -20,7 +21,6 @@ private:
     void Render();
 
     void UpdateKeyboardInput();
-    sf::Vector2f WrapPosition(sf::Vector2f v2fPosition, float fRadius);
 
     std::unique_ptr<GameWindow> m_gameWindow;
 
@@ -33,6 +33,7 @@ private:
 
     std::shared_ptr<Ship> m_pShip;
     std::vector<std::shared_ptr<Asteroid>> m_vecAsteroids;
+    std::vector<std::shared_ptr<Projectile>> m_vecProjectiles;
 
     std::vector<std::shared_ptr<AMoveable>> m_vecMovables;
     std::vector<std::shared_ptr<ADrawable>> m_vecDrawables;
