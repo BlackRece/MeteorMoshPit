@@ -42,6 +42,9 @@
     <ClCompile Include="AMoveable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AmmoPool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AMoveable.h">
@@ -75,6 +78,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IGameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AmmoPool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -33,6 +33,7 @@ Game::Game(int const iWidth, int const iHeight, int const iFramesPerSecond)
         m_vecDrawables.push_back(m_vecAsteroids[i]);
     }
 
+    // setup projectiles
     float fProjectileRadius = 2.0f;
     float fProjectileLifeTime = 2.0f;
     float fProjectileSpeed = 200.0f;
@@ -94,11 +95,8 @@ void Game::Update()
 {
     UpdateKeyboardInput();
 
-    for (std::shared_ptr<AMoveable> pGameObjects : m_vecMovables)
-    {
-        pGameObjects->Update(m_fDelta);
-        //pGameObjects->SetPosition(WrapPosition(pGameObjects->GetPosition(), pGameObjects->GetRadius()));
-	}
+    for (std::shared_ptr<AMoveable> pMoveable : m_vecMovables)
+        pMoveable->Update(m_fDelta);
 
     //debug display
     std::string sShipRadius = std::to_string(m_pShip->GetRadius());
@@ -168,8 +166,13 @@ void Game::UpdateKeyboardInput()
         {
             m_pShip->FireProjectile();
             m_vecProjectiles[0]->SetLocation(m_pShip->GetLocation());
-            m_vecProjectiles[0]->SetHeading(m_pShip->GetHeading());
-            m_vecProjectiles[0]->SetRotation(m_pShip->GetRotation());
+
+            sf::Vector2f v2fLocation = m_pShip->GetLocation();
+            sf::Vector2f v2fPosition = m_pShip->GetPosition();
+
+            float fHeading = m_pShip->GetHeading();
+            m_vecProjectiles[0]->SetHeading(fHeading);
+            m_vecProjectiles[0]->SetRotation(fHeading);
             m_vecProjectiles[0]->SetAlive(true);
         }
     }
