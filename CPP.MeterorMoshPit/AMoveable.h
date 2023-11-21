@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-class AMoveable
+class AMoveable : public std::enable_shared_from_this<AMoveable>
 {
 public:
 	AMoveable();

@@ -20,10 +20,6 @@ AmmoPool::AmmoPool()
 	}
 }
 
-AmmoPool::~AmmoPool()
-{
-}
-
 void AmmoPool::Update(float fDelta)
 {
 	for (std::shared_ptr<Projectile> pProjectile : m_vecActiveProjectiles)
@@ -44,7 +40,8 @@ void AmmoPool::Draw(sf::RenderWindow& window)
 
 void AmmoPool::Fire(std::shared_ptr<AMoveable> pMoveable)
 {
-	m_vecProjectiles[0]->SetLocation(pMoveable->GetPosition());
+	sf::Vector2f v2fLocation = pMoveable->GetPosition();
+	m_vecProjectiles[0]->SetLocation(v2fLocation);
 
 	float fHeading = pMoveable->GetHeading();
 	m_vecProjectiles[0]->SetHeading(fHeading);

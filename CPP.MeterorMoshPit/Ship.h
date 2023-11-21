@@ -3,6 +3,7 @@
 
 #include "AMoveable.h"
 #include "ADrawable.h"
+#include "AmmoPool.h"
 
 #define SHIP_SIDES 3
 #define SHIP_RADIUS 10.f
@@ -24,6 +25,8 @@ public:
 	//void GetProjectiles(m_vecDrawables, m_vecMovables);
 
 private:
+	std::unique_ptr<AmmoPool> m_pAmmoPool;
+
 	float m_fFireDelay;
 	float m_fFireTimer;
 };

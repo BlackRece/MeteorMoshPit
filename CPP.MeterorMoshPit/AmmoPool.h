@@ -8,7 +8,7 @@ class AmmoPool
 {
 public:
 	AmmoPool();
-	~AmmoPool();
+	~AmmoPool() = default;
 
 	void Fire(std::shared_ptr<AMoveable> pMoveable);
 

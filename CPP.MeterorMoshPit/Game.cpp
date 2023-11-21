@@ -34,7 +34,7 @@ Game::Game(int const iWidth, int const iHeight, int const iFramesPerSecond)
     }
 
     // setup projectiles
-    float fProjectileRadius = 2.0f;
+    /*float fProjectileRadius = 2.0f;
     float fProjectileLifeTime = 2.0f;
     float fProjectileSpeed = 200.0f;
     int iProjectileCount = 10;
@@ -46,7 +46,7 @@ Game::Game(int const iWidth, int const iHeight, int const iFramesPerSecond)
 		m_vecProjectiles.push_back(std::move(pProjectile));
 		m_vecMovables.push_back(m_vecProjectiles[i]);
 		m_vecDrawables.push_back(m_vecProjectiles[i]);
-	}
+	}*/
 
     // setup debug text log
     int nFontSize = 25;
@@ -97,21 +97,6 @@ void Game::Update()
 
     for (std::shared_ptr<AMoveable> pMoveable : m_vecMovables)
         pMoveable->Update(m_fDelta);
-
-    //debug display
-    std::string sShipRadius = std::to_string(m_pShip->GetRadius());
-    m_texts[0].setString("Radius: " + sShipRadius);
-
-    std::string sShipPos = std::to_string(m_pShip->GetPosition().x);
-    sShipPos.append(", ");
-    sShipPos.append(std::to_string(m_pShip->GetPosition().y));
-    m_texts[1].setString("ShipPosition: " + sShipPos);
-
-    //std::string sClass = std::to_string(m_pShip->GetHeadingAngle());
-    //m_texts[2].setString("ShapeAngle: " + sClass);
-
-    m_texts[3].setString("Width: " + std::to_string(m_gameWindow->GetWidth()));
-    m_texts[4].setString("Height: " + std::to_string(m_gameWindow->GetHeight()));
 }
 
 void Game::Render()
@@ -124,9 +109,6 @@ void Game::Render()
         pDrawable->WrapLocation(m_gameWindow->GetWidth(), m_gameWindow->GetHeight());
         pDrawable->Draw(window);
     }
-
-    //for (int i = 0; i < 10; i++)
-    //    window.draw(m_texts[i]);
 
     m_gameWindow->EndRender();
 }
@@ -162,18 +144,6 @@ void Game::UpdateKeyboardInput()
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Space))
     {
-        if (!m_pShip->IsFiring())
-        {
-            m_pShip->FireProjectile();
-            m_vecProjectiles[0]->SetLocation(m_pShip->GetLocation());
-
-            sf::Vector2f v2fLocation = m_pShip->GetLocation();
-            sf::Vector2f v2fPosition = m_pShip->GetPosition();
-
-            float fHeading = m_pShip->GetHeading();
-            m_vecProjectiles[0]->SetHeading(fHeading);
-            m_vecProjectiles[0]->SetRotation(fHeading);
-            m_vecProjectiles[0]->SetAlive(true);
-        }
+        m_pShip->FireProjectile();
     }
 }

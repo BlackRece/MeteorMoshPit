@@ -7,6 +7,8 @@ Ship::Ship(float fSpeed)
 
 	CreateShape(SHIP_RADIUS, SHIP_SIDES);
 	SetLineThickness(2.f);
+
+	m_pAmmoPool = std::make_unique<AmmoPool>();
 }
 
 Ship::~Ship()
@@ -26,7 +28,11 @@ bool Ship::IsFiring()
 void Ship::FireProjectile()
 {
 	if (m_fFireTimer <= 0.f)
+	{
 		m_fFireTimer = m_fFireDelay;
+		std::shared_ptr<AMoveable> pMoveable = shared_from_this();
+		m_pAmmoPool->Fire(pMoveable);
+	}
 }
 
 void Ship::Rotate(float fAngle)
